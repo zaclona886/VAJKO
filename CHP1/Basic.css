@@ -20,6 +20,9 @@ p{
 
 h3{
     text-align: center;
+}
+
+h3,h4,h5{
     font-family: 'Trebuchet MS', sans-serif;
     font-weight: bold;
     color: black;
@@ -93,6 +96,7 @@ a:hover{
     color: black !important;
     background-color: darkviolet !important;
     border-color: black !important;
+
 }
 
 .btn-primary:focus {
