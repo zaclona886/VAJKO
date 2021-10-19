@@ -1,6 +1,8 @@
 .napisNaruto {
     height: 30%;
     width: 30%;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
