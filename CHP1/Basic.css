@@ -1,14 +1,6 @@
 .napisNaruto {
     height: 30%;
     width: 30%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-p{
-    color: black;
-    font-family: 'Trebuchet MS', sans-serif;
-    font-weight: bold;
 }
 
 .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
@@ -20,9 +12,12 @@ p{
 
 h3{
     text-align: center;
+    color: rgb(81, 11, 160);
+    font-family: 'Trebuchet MS', sans-serif;
+    font-weight: bold;
 }
 
-h3,h4,h5{
+h4,h5,p{
     font-family: 'Trebuchet MS', sans-serif;
     font-weight: bold;
     color: black;
@@ -34,11 +29,6 @@ h3,h4,h5{
     font-family: 'Trebuchet MS', sans-serif;
 }
 
-a{
-    color: darkviolet;
-    font-weight: bold;
-    font-family: 'Trebuchet MS', sans-serif;
-}
 body {
     background-image: url("https://i.pinimg.com/originals/0e/99/c1/0e99c1ff6c4fd08a9878f51960f6cdfb.jpg");
     background-repeat: no-repeat;
@@ -47,11 +37,11 @@ body {
     background-size: cover;
 }
 a:hover{
-    color: red !important;
+    color: rgb(211, 80, 35) !important;
 }
 
 .mytext{
-    background-color: rgba(196, 41, 8, 0.4 );
+    background-color: rgba(211, 80, 35, 0.5 );
 }
 
 .mobil{
@@ -59,12 +49,12 @@ a:hover{
     position: center;
 }
 
-/*UPRAVOVANIE OBRAZKOV PO BOKU*/
+/*Obrazok - on sides*/
 .obrazok{
     position: sticky;
     top: 20%
 }
-
+/*L-mobile form*/
 @media (max-width: 768px) {
     .obrazok {
         display: none;
@@ -74,7 +64,7 @@ a:hover{
         margin-top: 30% ;
     }
 }
-
+/*S-mobile form*/
 @media (max-width: 576px) {
     .mobil{
         display: inline;
@@ -84,25 +74,20 @@ a:hover{
 
 
 /*CHARACTERS*/
-.btn-primary, .btn {
-    color: black;
-    background-color: darkviolet;
-    border-color: black;
-    margin-left: auto ;
-    margin-right: auto;
-}
-
-.btn {
+.btn-primary,.btn {
     color: black !important;
     background-color: darkviolet !important;
     border-color: black !important;
-
 }
 
 .btn-primary:focus {
     box-shadow: none !important;
 }
+/*JUTSUS*/
+.card,.list-group-item {
+    background-color:rgba(211, 80, 35, 0.4);
+}
 
 .card-body {
-    background-color: rgba(196, 41, 8, 0.4 );
+    background-color: rgba(81, 11, 160,0.5);
 }
