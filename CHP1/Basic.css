@@ -54,7 +54,7 @@ a:hover{
 /*Obrazok - on sides*/
 .obrazok{
     position: sticky;
-    top: 20%
+    top: 25%;
 }
 /*L-mobile form*/
 @media (max-width: 768px) {
@@ -63,14 +63,12 @@ a:hover{
     }
     .mobil{
         display: inline;
-        margin-top: 30% ;
     }
 }
 /*S-mobile form*/
 @media (max-width: 576px) {
     .mobil{
         display: inline;
-        margin-top: 0% ;
     }
 }
 
