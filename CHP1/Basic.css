@@ -65,13 +65,6 @@ a:hover{
         display: inline;
     }
 }
-/*S-mobile form*/
-@media (max-width: 576px) {
-    .mobil{
-        display: inline;
-    }
-}
-
 
 /*CHARACTERS*/
 .btn-primary,.btn {
