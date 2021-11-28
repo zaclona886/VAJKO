@@ -48,6 +48,7 @@ $app = new App();
             </div>
             <div class="mytext border border-3 border-dark rounded">
                 <div class="row">
+                    <h3>List of Jutsus</h3>
                     <?php $i=1; foreach ($app->getAllJutsus() as $jutsu) { ?>
                         <div class="col-12 col-md-6">
                             <div class="card">
@@ -62,7 +63,19 @@ $app = new App();
                                     <li class="list-group-item"><h5>Element: </h5>
                                         <p><?= $jutsu->getElement()?></p></li>
                                     <li class="list-group-item"><h5>Users: </h5>
-                                        <p>Bla bla bla bla bla bla bla bla</p></li>
+                                        <div class="text-start mt-2">
+                                            <form method="post">
+                                                <input type="hidden" name="jutsu_id" value="<?= $jutsu->getId()?>">
+                                                <input type="text" name="name" placeholder="User's name...">
+                                                <button type="submit" class="check-fill btn-outline-warning" name="user">
+                                                    <i class="bi bi-check-circle-fill"></i>
+                                                </button>
+                                            </form>
+                                                <?php foreach ($jutsu->getUsers() as $user) { ?>
+                                                    <p><?php echo $user->getName(); ?></p>
+                                                <?php } ?>
+                                        </div>
+                                    </li>
                                 </ul>
                             </div>
                         </div>

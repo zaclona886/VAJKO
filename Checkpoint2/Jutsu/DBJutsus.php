@@ -19,7 +19,18 @@ class DBJutsus
         $stmt = $this->connection->prepare("SELECT * FROM jutsus");
         $stmt->execute();
         $jutsus = $stmt->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, Jutsu::class);
-        // TODO pridat userov
+        $stmt = $this->connection->prepare("SELECT * FROM users WHERE jutsu_id = ?");
+        foreach ($jutsus as $jutsu) {
+            $stmt->execute([intval($jutsu->getId())]);
+            $users = $stmt->fetchAll( PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, User::class);
+            $jutsu->setUsers($users);
+        }
         return $jutsus;
+    }
+
+    public function addUser(User $user)
+    {
+        $this->connection->prepare("INSERT INTO users (jutsu_id, name) VALUES (?,?)")
+            ->execute([$user->getJutsuId(), $user->getName()]);
     }
 }
