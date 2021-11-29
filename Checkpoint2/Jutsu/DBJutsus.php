@@ -14,6 +14,12 @@ class DBJutsus
         }
     }
 
+    public function storeJutsu(Jutsu $jutsu)
+    {
+        $this->connection->prepare("INSERT INTO jutsus(image,name,text,type,element) VALUES (?,?,?,?,?)")
+        ->execute([$jutsu->getImage(),$jutsu->getName(),$jutsu->getText(),$jutsu->getType(),$jutsu->getElement()]);
+    }
+
     public function getAllJutsus()
     {
         $stmt = $this->connection->prepare("SELECT * FROM jutsus");

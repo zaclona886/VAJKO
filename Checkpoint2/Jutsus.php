@@ -49,37 +49,96 @@ $app = new App();
             <div class="mytext border border-3 border-dark rounded">
                 <div class="row">
                     <h3>List of Jutsus</h3>
-                    <?php $i=1; foreach ($app->getAllJutsus() as $jutsu) { ?>
-                        <div class="col-12 col-md-6">
-                            <div class="card">
-                                <img src="<?=$jutsu->getImage() ?>" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h4 class="card-title"><?=$jutsu->getName() ?></h4>
-                                    <p class="card-text"><?= $jutsu->getText() ?></p>
-                                </div>
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item"><h5>Type: </h5>
-                                        <p><?= $jutsu->getType() ?></p></li>
-                                    <li class="list-group-item"><h5>Element: </h5>
-                                        <p><?= $jutsu->getElement()?></p></li>
-                                    <li class="list-group-item"><h5>Users: </h5>
-                                        <div class="text-start mt-2">
-                                            <form method="post">
-                                                <input type="hidden" name="jutsu_id" value="<?= $jutsu->getId()?>">
-                                                <input type="text" name="name" placeholder="User's name...">
-                                                <button type="submit" class="check-fill btn-outline-warning" name="user">
-                                                    <i class="bi bi-check-circle-fill"></i>
-                                                </button>
-                                            </form>
-                                                <?php foreach ($jutsu->getUsers() as $user) { ?>
-                                                    <p><?php echo $user->getName(); ?></p>
-                                                <?php } ?>
+                    <div>
+                        <a class="btn btn-primary " data-bs-toggle="collapse" href="#multiCollapseExample1"
+                           role="button"
+                           aria-expanded="false" aria-controls="multiCollapseExample1">Add Jutsu</a>
+                        <div class="collapse multi-collapse" id="multiCollapseExample1">
+                            <div class="card card-body">
+                                <div class="row">
+                                    <form method="post" enctype="multipart/form-data">
+                                        <div class="form-group">
+                                            <label for="inputUrl">Image's URL</label>
+                                            <input type="url" class="form-control" name="url" id="inputUrl" placeholder="www.example.com/exp.jpg">
                                         </div>
-                                    </li>
-                                </ul>
+                                        <div class="col-4">
+                                            <label for="inputName">Name of Jutsu</label><br>
+                                            <input type="text" class="form-control" name="name" id="inputName">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputDesc">Description</label>
+                                            <input type="text" class="form-control" name="text" id="inputDesc" placeholder="Jutsu's description..."><br>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <label for="inputType">Jutsu's type</label>
+                                                <select  id="inputType" class="form-control" name="type">
+                                                    <option selected>N/A</option>
+                                                    <option>Ninjutsu</option>
+                                                    <option>Genjutsu</option>
+                                                    <option>TaiJutsu</option>
+                                                    <option>Dōjutsu</option>
+                                                    <option>Shurikenjutsu</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-4">
+                                                <label for="inputElem">Jutsu's element</label>
+                                                <select  id="inputElem" class="form-control" name="element">
+                                                    <option selected>N/A</option>
+                                                    <option>Fire</option>
+                                                    <option>Wind</option>
+                                                    <option>Lightning</option>
+                                                    <option>Earth</option>
+                                                    <option>Water</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="p-2">
+                                            <button type="submit" class="btn btn-primary" name="jutsu">Add Jutsu</button>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
-                    <?php } ?>
+                    </div>
+                    <div class="row">
+                        <?php foreach ($app->getAllJutsus() as $jutsu) { ?>
+                            <div class="col-12 col-md-6">
+                                <div class="card">
+                                    <div class="col-1">
+                                        <button type="submit" class="btn btn-primary" name="jutsu">
+                                            <i class="bi bi-bag-x-fill"></i>
+                                        </button>
+                                    </div>
+                                    <img src="<?=$jutsu->getImage() ?>" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h4 class="card-title"><?=$jutsu->getName() ?></h4>
+                                        <p class="card-text"><?= $jutsu->getText() ?></p>
+                                    </div>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item"><h5>Type: </h5>
+                                            <p><?= $jutsu->getType() ?></p></li>
+                                        <li class="list-group-item"><h5>Element: </h5>
+                                            <p><?= $jutsu->getElement()?></p></li>
+                                        <li class="list-group-item"><h5>Users: </h5>
+                                            <div class="text-start mt-2">
+                                                <form method="post">
+                                                    <input type="hidden" name="jutsu_id" value="<?= $jutsu->getId()?>">
+                                                    <input type="text" name="name" placeholder="User's name...">
+                                                    <button type="submit" class="check-fill btn-outline-warning" name="user">
+                                                        <i class="bi bi-check-circle-fill"></i>
+                                                    </button>
+                                                </form>
+                                                    <?php foreach ($jutsu->getUsers() as $user) { ?>
+                                                        <p><?php echo $user->getName(); ?></p>
+                                                    <?php } ?>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        <?php } ?>
+                    </div>
                 </div>
             </div>
         </div>
