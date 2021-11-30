@@ -39,7 +39,7 @@
                      src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Naruto_logo.svg/1920px-Naruto_logo.svg.png"
                      alt="...">
             </div>
-            <div class=" row mytext border border-3 border-dark rounded text-center ">
+            <div class="row mytext border border-3 border-dark rounded text-center">
                 <h3>List of characters</h3>
                 <div class="col-12 col-md-6">
                     <div>

@@ -123,7 +123,7 @@ $app = new App();
                                 <div class="card p-1">
                                     <div class=" d-flex justify-content-end">
                                         <div class="position-absolute">
-                                            <form method="post">
+                                            <form method="post" enctype="multipart/form-data">
                                                 <input type="hidden" name="jutsu_id" value="<?= $jutsu->getId() ?>">
                                                 <button class="check-fill btn-outline-success" id="dropdownMenuButton1"
                                                         data-bs-toggle="dropdown"
@@ -167,11 +167,8 @@ $app = new App();
                                             <p><?= $jutsu->getType() ?></p></li>
                                         <li class="list-group-item"><h5>Element: </h5>
                                             <p><?= $jutsu->getElement() ?></p></li>
-
-                                        <div class="col-4"></div>
-                                        <div class="col-8"></div>
                                         <li class="list-group-item">
-                                            <form method="post">
+                                            <form method="post" >
                                                 <input type="hidden" name="jutsu_id"
                                                        value="<?= $jutsu->getId() ?>">
                                                 <input type="text" name="name" placeholder="User's name..."

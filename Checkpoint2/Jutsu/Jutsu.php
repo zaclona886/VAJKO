@@ -3,7 +3,7 @@
 class Jutsu
 {
     public function __construct(private int $id = 0, private ?string $image = null, private ?string $name = null,
-    private ?string $text = null, private ?string $type = null, private ?string $element = null,)
+    private ?string $text = null, private ?string $type = null, private ?string $element = null)
     {
     }
 
