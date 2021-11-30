@@ -14,7 +14,7 @@ class Configuration
     public const DB_USER = 'root';
     public const DB_PASS = 'dtb456';
 
-    public const LOGIN_URL = '/';
+    public const LOGIN_URL = '?c=auth&a=loginForm';
 
     public const ROOT_LAYOUT = 'root.layout.view.php';
 

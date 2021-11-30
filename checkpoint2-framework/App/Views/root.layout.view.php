@@ -19,7 +19,11 @@
             <li class="nav-item"><a href="?c=home" class="nav-link">Home</a></li>
             <li class="nav-item"><a href="?c=home&a=characters" class="nav-link">Characters</a></li>
             <li class="nav-item"><a href="?c=home&a=jutsu" class="nav-link">Jutsus</a></li>
-            <li class="nav-item"><a href="?c=home&a=login" class="nav-link">Login</a></li>
+            <?php if (App\Auth::isLogged()) { ?>
+                <li class="nav-item"><a href="?c=auth&a=logout" class="nav-link">Logout</a></li>
+            <?php } else { ?>
+                <li class="nav-item"><a href="<?= \App\Config\Configuration::LOGIN_URL ?>" class="nav-link">Login</a></li>
+            <?php } ?>
         </ul>
     </header>
 </div>

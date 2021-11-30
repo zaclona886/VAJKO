@@ -36,13 +36,6 @@ class HomeController extends AControllerBase
         return $this->html($jutsu);
     }
 
-    public function login()
-    {
-        return $this->html(
-            []
-        );
-    }
-
     private function loadJutsu(){
         header("Location: ?c=home&a=jutsu");
         return $this->html();

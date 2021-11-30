@@ -5,11 +5,11 @@
     <div class="row">
         <div class="col-4 m-2">
             <div>
-
+                <?php if (App\Auth::isLogged()) { ?>
                 <a class="btn btn-primary" data-bs-toggle="collapse" href="#multiCollapseExample1"
                    role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Add Jutsu
                 </a>
-
+                <?php } ?>
             </div>
         </div>
         <div class="col-4 m-2">
@@ -76,6 +76,7 @@
         <?php foreach ($data as $jutsu) { ?>
             <div class="col-12 col-md-6">
                 <div class="card p-1">
+                    <?php if (App\Auth::isLogged()) { ?>
                     <div class=" d-flex justify-content-end">
                         <div class="position-absolute">
                             <form method="post" enctype="multipart/form-data" action="?c=home&a=iconAction">
@@ -111,6 +112,7 @@
                             </form>
                         </div>
                     </div>
+                    <?php } ?>
 
                     <img src="<?= $jutsu->image ?>" class="card-img-top" alt="...">
                     <div class="card-body">
@@ -123,6 +125,7 @@
                         <li class="list-group-item"><h5>Element: </h5>
                             <p><?= $jutsu->element ?></p></li>
                         <li class="list-group-item">
+                            <?php if (App\Auth::isLogged()) { ?>
                             <form method="post" enctype="multipart/form-data" action="?c=home&a=addUser">
                                 <input type="hidden" name="jutsu_id"
                                        value="<?= $jutsu->id ?>">
@@ -133,6 +136,7 @@
                                     <i class="bi bi-check-circle-fill"></i>
                                 </button>
                             </form>
+                            <?php } ?>
                             <h5>Users:</h5>
                             <p>
                                 <?php $i = 1;
