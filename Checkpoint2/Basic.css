@@ -38,7 +38,8 @@ body {
     background-attachment: fixed;
     background-size: cover;
 }
-a:hover{
+
+a:hover, .btn:hover{
     color: rgb(211, 80, 35) !important;
 }
 
@@ -66,7 +67,6 @@ a:hover{
     }
 }
 
-
 /*CHARACTERS*/
 .btn-primary,.btn {
     color: black !important;
@@ -78,12 +78,34 @@ a:hover{
     box-shadow: none !important;
 }
 /*JUTSUS*/
-.card,.list-group-item {
+.card,.list-group-item{
     background-color:rgba(211, 80, 35, 0.4);
+}
+.dropdown-menu {
+    background-color:rgba(0, 0, 0, 0);
+    border-width: 0px;
 }
 
 .card-body {
     background-color: rgba(81, 11, 160,0.5);
 }
 
+
+/*TODO */
+div[data-tooltip] {
+    display: inline;
+    font-weight: bold;
+    position: relative;
+}
+.tooltip {
+    display: block;
+    width: 200px;
+    border: 1px solid black;
+    position: absolute;
+    background-color: white;
+    z-index: 1;
+    padding: 3px;
+    top: 120%;
+    left: 0;
+}
 

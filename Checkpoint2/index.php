@@ -25,55 +25,27 @@ $app = new App();
 </head>
 <body>
 <div class="row">
-    <div>
-        <a class="btn btn-primary " data-bs-toggle="collapse" href="#multiCollapseExample1"
-           role="button"
-           aria-expanded="false" aria-controls="multiCollapseExample1">Add Jutsu</a>
-        <div class="collapse multi-collapse" id="multiCollapseExample1">
-            <div class="card card-body">
-                <div class="row">
-                    <form method="post" enctype="multipart/form-data">
-                        <div class="form-group">
-                            <label for="inputUrl">Image's URL</label>
-                            <input type="url" class="form-control" name="url" id="inputUrl" placeholder="www.example.com/exp.jpg">
-                        </div>
-                        <div class="col-4">
-                            <label for="inputName">Name of Jutsu</label><br>
-                            <input type="text" class="form-control" name="name" id="inputName">
-                        </div>
-                        <div class="form-group">
-                            <label for="inputDesc">Description</label>
-                            <input type="text" class="form-control" name="text" id="inputDesc" placeholder="Jutsu's description..."><br>
-                        </div>
-                        <div class="row">
-                            <div class="col-4">
-                                <label for="inputType">Jutsu's type</label>
-                                <select  id="inputType" class="form-control" name="type">
-                                    <option selected>N/A</option>
-                                    <option>Ninjutsu</option>
-                                    <option>Genjutsu</option>
-                                    <option>TaiJutsu</option>
-                                    <option>Dōjutsu</option>
-                                    <option>Shurikenjutsu</option>
-                                </select>
-                            </div>
-                            <div class="col-4">
-                                <label for="inputElem">Jutsu's element</label>
-                                <select  id="inputElem" class="form-control" name="element">
-                                    <option selected>N/A</option>
-                                    <option>Fire</option>
-                                    <option>Wind</option>
-                                    <option>Lightning</option>
-                                    <option>Earth</option>
-                                    <option>Water</option>
-                                </select>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary p-2" name="jutsu">Add Jutsu</button>
-                    </form>
+    <button class="check-fill btn-outline-success" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+            aria-expanded="false">
+        <i class="bi bi-pencil-square"></i>
+    </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <div class="card row">
+                <div class="col-12">
+                <form method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="inputUrl">Image's URL</label>
+                        <input type="url" class="form-control" name="url" id="inputUrl"
+                               placeholder="www.example.com/exp.jpg">
+                    </div>
+                    <div class="p-2">
+                        <button type="submit" class="btn btn-primary" name="xxxxxx">
+                            Rewrite URL
+                        </button>
+                    </div>
+                </form>
                 </div>
             </div>
-        </div>
-    </div>
+        </ul>
 </div>
 </body>

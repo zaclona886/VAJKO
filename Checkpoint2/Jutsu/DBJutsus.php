@@ -39,4 +39,19 @@ class DBJutsus
         $this->connection->prepare("INSERT INTO users (jutsu_id, name) VALUES (?,?)")
             ->execute([$user->getJutsuId(), $user->getName()]);
     }
+
+    public function deleteJutsu($par_jutsu_id)
+    {
+        $this->connection->prepare("DELETE FROM jutsus WHERE id=?")->execute([$par_jutsu_id]);
+    }
+
+    public function deleteUser($par_jutsu_id)
+    {
+        $this->connection->prepare("DELETE FROM users WHERE jutsu_id=?")->execute([$par_jutsu_id]);
+    }
+
+    public function rewriteURL($par_jutsu_id,$newURL)
+    {
+        $this->connection->prepare("UPDATE jutsus SET image=? WHERE id=?")->execute([$newURL,$par_jutsu_id]);
+    }
 }

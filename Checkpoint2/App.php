@@ -10,11 +10,11 @@ class App
 
     public function __construct()
     {
-        $a = 1;
         $this->storage = new DBJutsus();
+
         if (isset($_POST['jutsu'])) {
 
-           $image_url = $_POST['url'];
+            $image_url = $_POST['url'];
             $image_check = substr($image_url, -4);
             if (!($image_check == '.jpg' || $image_check == '.png')) {
                 echo 'Neplatne udaje';
@@ -23,11 +23,24 @@ class App
             $this->storeJutsu();
         }
 
-
         if (isset($_POST['user'])) {
-            if ($_POST['name'] != "") {
-                $this->storage->addUser(new User(jutsu_id: $_POST['jutsu_id'], name: $_POST['name']));
+            $this->storage->addUser(new User(jutsu_id: $_POST['jutsu_id'], name: $_POST['name']));
+        }
+
+        if (isset($_POST['deleteJutsu'])) {
+            $this->storage->deleteUser($_POST['jutsu_id']);
+            $this->storage->deleteJutsu($_POST['jutsu_id']);
+        }
+
+        if (isset($_POST['rewriteURL'])) {
+            $image_url = $_POST['newURL'];
+            $image_check = substr($image_url, -4);
+            if (!($image_check == '.jpg' || $image_check == '.png')) {
+                echo 'Neplatne udaje';
+                return;
             }
+
+            $this->storage->rewriteURL($_POST['jutsu_id'],$_POST['newURL']);
         }
     }
     public function getAllJutsus()
