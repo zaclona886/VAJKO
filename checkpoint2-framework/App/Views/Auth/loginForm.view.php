@@ -1,4 +1,7 @@
 <?php /** @var Array $data */ ?>
+<div class="row mt-2 mb-2">
+        <h3><i class="bi bi-box-arrow-in-right"></i> Login <i class="bi bi-box-arrow-in-left"></i></h3>
+</div>
 <div class="row">
     <div class="col-0 col-md-6 justify-content-center">
         <img class="card-img-top"
