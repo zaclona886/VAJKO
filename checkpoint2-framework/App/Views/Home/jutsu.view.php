@@ -1,6 +1,7 @@
 <?php
 /** @var Array $data */
 ?>
+<script src="public/jutsu.js"></script>
 <div class="row d-flex justify-content-center">
     <div class="row mt-2 mb-2">
         <strong>
@@ -18,9 +19,8 @@
                     <div class="row">
                         <form method="post" enctype="multipart/form-data" action="?c=home&a=addJutsu">
                             <div class="form-group">
-                                <label for="inputUrl">Image's URL</label>
-                                <input type="url" class="form-control" name="url" id="inputUrl"
-                                       placeholder="www.example.com/exp.jpg">
+                                <label for="inputUrl">Image</label>
+                                <input type="file" class="form-control" name="img" id="inputUrl">
                             </div>
                             <div class="col-6">
                                 <label for="inputName">Name of Jutsu</label><br>
@@ -29,14 +29,15 @@
                             </div>
                             <div class="form-group">
                                 <label for="inputDesc">Description</label>
-                                <textarea type="text" class="form-control" name="text" id="inputDesc">
+                                <textarea type="text" class="form-control" name="text" id="inputDesc"
+                                          minlength="10" required>
                                 </textarea>
                                     <br>
                             </div>
                             <div class="row">
                                 <div class="col-6">
                                     <label for="inputType">Jutsu's type</label>
-                                    <select id="inputType" class="form-control" name="type">
+                                    <select id="inputType" class="form-select" name="type">
                                         <option selected>N/A</option>
                                         <option>Ninjutsu</option>
                                         <option>Genjutsu</option>
@@ -47,7 +48,7 @@
                                 </div>
                                 <div class="col-6">
                                     <label for="inputElem">Jutsu's element</label>
-                                    <select id="inputElem" class="form-control" name="element">
+                                    <select id="inputElem" class="form-select" name="element">
                                         <option selected>N/A</option>
                                         <option>Fire</option>
                                         <option>Wind</option>
@@ -69,7 +70,7 @@
                 <div class="row">
                     <div class="col-12 d-flex justify-content-center mt-2">
                         <div class="alert alert-danger">
-                            You need to be login to add character.
+                            You need to be login to add jutsu.
                         </div>
                     </div>
                 </div>
@@ -97,7 +98,9 @@
         </div>
     <?php }  ?>
     <div class="row">
-        <?php foreach ($data as $jutsu) { ?>
+        <?php
+        $x = 1;
+        foreach ($data as $jutsu) {?>
             <div class="col-12 col-md-6">
                 <div class="card p-2">
                     <?php if (App\Auth::isLogged()) { ?>
@@ -119,15 +122,14 @@
                                         <div class="card row">
                                             <div class="col-12">
                                                 <div class="form-group">
-                                                    <label for="inputUrl">Image's URL</label>
-                                                    <input type="url" class="form-control" name="newURL"
-                                                           id="inputUrl"
-                                                           placeholder="www.example.com/exp.jpg">
+                                                    <label for="inputUrl">Change image</label>
+                                                    <input type="file" class="form-control" name="newImg"
+                                                           id="inputUrl">
                                                 </div>
                                                 <div class="p-2">
                                                     <button type="submit" class="btn btn-primary"
-                                                            name="rewriteURL">
-                                                        Rewrite URL
+                                                            name="rewriteImg">
+                                                        Change image
                                                     </button>
                                                 </div>
                                             </div>
@@ -138,35 +140,37 @@
                         </div>
                     <?php } ?>
 
-                    <img src="<?= $jutsu->image ?>" class="card-img-top" alt="...">
+                    <img src="<?=  \App\Config\Configuration::UPLOAD_DIR . $jutsu->image ?>" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h4 class="card-title"><?= $jutsu->name ?></h4>
                         <p class="card-text"><?= $jutsu->text ?></p>
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
-                            <h5>Type: </h5>
-                            <p><?= $jutsu->type ?></p>
+                            <p>Type: <?= $jutsu->type ?></p>
                         </li>
                         <li class="list-group-item">
-                            <h5>Element: </h5>
-                            <p><?= $jutsu->element ?></p>
+                            <p>Element: <?= $jutsu->element ?></p>
                         </li>
                         <li class="list-group-item">
                             <?php if (App\Auth::isLogged()) { ?>
                                 <form method="post" enctype="multipart/form-data" action="?c=home&a=addUser">
-                                    <input type="hidden" name="jutsu_id"
-                                           value="<?= $jutsu->id ?>">
-                                    <input type="text" name="name" placeholder="User's name..."
-                                           minlength="3" required>
-                                    <button type="submit" class="check-fill btn-outline-warning"
-                                            name="user">
-                                        <i class="bi bi-check-circle-fill"></i>
-                                    </button>
+                                    <div class="row">
+                                        <div class="col-8 d-flex justify-content-center">
+                                            <input type="hidden" name="jutsu_id" value="<?= $jutsu->id ?>">
+                                            <select id="inputUser<?php echo $x?>" class="form-select" name="name">
+                                            </select>
+                                        </div>
+                                        <div class="col-4 d-flex justify-content-start">
+                                            <button type="submit" class="check-fill btn-outline-warning"
+                                                    name="user">
+                                                <i class="bi bi-check-circle-fill"></i>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </form>
                             <?php } ?>
-                            <h5>Users:</h5>
-                            <p>
+                            <p> Users:
                                 <?php $i = 1;
                                 foreach ($jutsu->users() as $user) {
                                     echo $user->name;
@@ -182,6 +186,7 @@
                     </ul>
                 </div>
             </div>
-        <?php } ?>
+        <?php
+        $x +=1;} ?>
     </div>
 </div>

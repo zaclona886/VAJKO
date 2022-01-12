@@ -19,6 +19,7 @@
             <li class="nav-item"><a href="?c=home" class="nav-link">Home</a></li>
             <li class="nav-item"><a href="?c=home&a=characters" class="nav-link">Characters</a></li>
             <li class="nav-item"><a href="?c=home&a=jutsu" class="nav-link">Jutsus</a></li>
+            <li class="nav-item"><a href="?c=home&a=tools" class="nav-link">Tools</a></li>
             <?php if (App\Auth::isLogged()) { ?>
                 <li class="nav-item"><a href="?c=auth&a=logout" class="nav-link">Logout</a></li>
             <?php } else { ?>
@@ -31,13 +32,13 @@
     <div class="row">
         <div class="col-md-2">
             <img class="obrazok border border-5 border-dark rounded img-fluid"
-                 src="https://1.bp.blogspot.com/-eDNN1EY6S1M/YPW6x4MylAI/AAAAAAAAs_k/c4DpMq9LMtgiNGQcXb_gOHQ8AzV83gMsgCLcBGAsYHQ/s1280/sasuke-wallpapers%2B%252812%2529.jpg"
+                 src="public/images/sasuke-wallpapers.jpg"
                  alt="...">
         </div>
         <div class="col-12 col-md-8">
             <div class="row">
                 <img class="napisNaruto"
-                     src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Naruto_logo.svg/1920px-Naruto_logo.svg.png"
+                     src="public/images/Naruto_logo.svg.png"
                      alt="...">
             </div>
             <div class="mytext border border-3 border-dark rounded">
@@ -46,7 +47,7 @@
         </div>
         <div class="col-md-2">
             <img class="obrazok border border-5 border-dark rounded img-fluid"
-                 src="https://i.pinimg.com/originals/98/4d/76/984d76e1c7467d61f87e5d495b67af74.jpg" alt="...">
+                 src="public/images/naruto-wallpaper.jpg" alt="...">
         </div>
     </div>
 </div>

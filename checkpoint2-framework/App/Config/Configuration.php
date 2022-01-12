@@ -19,4 +19,6 @@ class Configuration
     public const ROOT_LAYOUT = 'root.layout.view.php';
 
     public const DEBUG_QUERY = false;
+
+    public const UPLOAD_DIR = "public/images/";
 }

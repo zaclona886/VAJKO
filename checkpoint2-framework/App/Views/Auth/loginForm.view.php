@@ -5,7 +5,7 @@
 <div class="row">
     <div class="col-0 col-md-6 justify-content-center">
         <img class="card-img-top"
-             src="https://i.pinimg.com/736x/f1/fc/01/f1fc012b7cf7f1d13cdfdcb8b66741d9.jpg" alt="...">
+             src="public/images/itachi_login.jpg" alt="...">
     </div>
     <div class="col-12 col-md-6">
         <div class="row">

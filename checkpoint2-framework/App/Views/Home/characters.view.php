@@ -18,19 +18,16 @@
                     <div class="row">
                         <form method="post" enctype="multipart/form-data" action="?c=home&a=addCharacter">
                             <div class="form-group">
-                                <label for="inputUrl">Image1's URL</label>
-                                <input type="url" class="form-control" name="url1" id="inputUrl"
-                                       placeholder="www.example.com/exp.jpg">
+                                <label for="inputUrl">Image1</label>
+                                <input type="file" class="form-control" name="img1" id="inputUrl" required>
                             </div>
                             <div class="form-group">
-                                <label for="inputUrl">Image2's URL</label>
-                                <input type="url" class="form-control" name="url2" id="inputUrl"
-                                       placeholder="www.example.com/exp.jpg">
+                                <label for="inputUrl">Image2</label>
+                                <input type="file" class="form-control" name="img2" id="inputUrl" required>
                             </div>
                             <div class="form-group">
-                                <label for="inputUrl">Image3's URL</label>
-                                <input type="url" class="form-control" name="url3" id="inputUrl"
-                                       placeholder="www.example.com/exp.jpg">
+                                <label for="inputUrl">Image3</label>
+                                <input type="file" class="form-control" name="img3" id="inputUrl" required>
                             </div>
                             <div class="col-4">
                                 <label for="inputName">Character's name</label><br>
@@ -39,7 +36,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="inputText">Text</label>
-                                <textarea class="form-control" name="text" id="inputText">
+                                <textarea class="form-control" name="text" id="inputText" minlength="10" required>
                                 </textarea><br>
                             </div>
                             <div class="pl-5">
@@ -100,13 +97,13 @@
                             </div>
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                    <img src="<?= $character->image1 ?>" class="d-block w-100" alt="...">
+                                    <img src="<?= \App\Config\Configuration::UPLOAD_DIR . $character->image1 ?>" class="d-block w-100" alt="...">
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="<?= $character->image2 ?>" class="d-block w-100" alt="...">
+                                    <img src="<?= \App\Config\Configuration::UPLOAD_DIR . $character->image2 ?>" class="d-block w-100" alt="...">
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="<?= $character->image3 ?>" class="d-block w-100" alt="...">
+                                    <img src="<?= \App\Config\Configuration::UPLOAD_DIR . $character->image3 ?>" class="d-block w-100" alt="...">
                                 </div>
                             </div>
                             <button class="carousel-control-prev" type="button"

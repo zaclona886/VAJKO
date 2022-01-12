@@ -24,6 +24,9 @@ h4,h5,p,label{
     font-weight: bold;
     color: black;
 }
+p{
+    margin-bottom: 0;
+}
 
 .nav-link{
     color: darkviolet;
@@ -32,7 +35,7 @@ h4,h5,p,label{
 }
 
 body {
-    background-image: url("https://i.pinimg.com/originals/0e/99/c1/0e99c1ff6c4fd08a9878f51960f6cdfb.jpg");
+    background-image: url(images/naruto_backround.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
