@@ -22,8 +22,12 @@ class HomeController extends AControllerRedirect
 
     public function index()
     {
-        $data[0] = Character::getAll();
-        $data[1] = Jutsu::getAll();
+        $characters = Character::getAll();
+        $data[0] = array_reverse($characters);
+        $jutsus =Jutsu::getAll();
+        $data[1] = array_reverse($jutsus);
+        $tools = Tool::getAll();
+        $data[2] = array_reverse($tools);
         return $this->html($data);
     }
 
@@ -31,7 +35,7 @@ class HomeController extends AControllerRedirect
     public function characters()
     {
         $characters = Character::getAll();
-        return $this->html($characters);
+        return $this->html(array_reverse($characters));
     }
 
     public function addCharacter()
@@ -41,56 +45,51 @@ class HomeController extends AControllerRedirect
             return;
         }
 
-        if (isset($_POST['addCharacter'])) {
-            if ($_FILES["img1"]["error"] == UPLOAD_ERR_OK) {
-                $img1_name = date('Y-m-d-H-i-s').'-1-'.$_FILES['img1']['name'];
-                $imageFileType = strtolower(pathinfo($img1_name,PATHINFO_EXTENSION));
-                if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
-                    $this->redirect('home','characters', ['error' => 'File1 is not an image!']);
-                    return;
-                }
+        if ($_FILES["img_1"]["error"] == UPLOAD_ERR_OK) {
+        $img1_name = date('Y-m-d-H-i-s').'-1-'.$_FILES['img_1']['name'];
+        $imageFileType = strtolower(pathinfo($img1_name,PATHINFO_EXTENSION));
+        if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
+            return $this->json("error");
+        }
+    }
+        if ($_FILES["img_2"]["error"] == UPLOAD_ERR_OK) {
+            $img2_name = date('Y-m-d-H-i-s').'-2-'.$_FILES['img_2']['name'];
+            $imageFileType = strtolower(pathinfo($img2_name,PATHINFO_EXTENSION));
+            if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
+                return $this->json("error");
             }
-            if ($_FILES["img2"]["error"] == UPLOAD_ERR_OK) {
-                $img2_name = date('Y-m-d-H-i-s').'-2-'.$_FILES['img2']['name'];
-                $imageFileType = strtolower(pathinfo($img2_name,PATHINFO_EXTENSION));
-                if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
-                    $this->redirect('home','characters', ['error' => 'File2 is not an image!']);
-                    return;
-                }
+        }
+        if ($_FILES["img_3"]["error"] == UPLOAD_ERR_OK) {
+            $img3_name = date('Y-m-d-H-i-s').'-3-'.$_FILES['img_3']['name'];
+            $imageFileType = strtolower(pathinfo($img3_name,PATHINFO_EXTENSION));
+            if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
+                return $this->json("error");
             }
-            if ($_FILES["img3"]["error"] == UPLOAD_ERR_OK) {
-                $img3_name = date('Y-m-d-H-i-s').'-3-'.$_FILES['img3']['name'];
-                $imageFileType = strtolower(pathinfo($img3_name,PATHINFO_EXTENSION));
-                if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
-                    $this->redirect('home','characters', ['error' => 'File3 is not an image!']);
-                    return;
-                }
-            }
-
-            if ( strlen($_POST['name']) < 3) {
-                $this->redirect('home','characters', ['error' => 'Name is too short!']);
-                return;
-            }
-
-            if ( strlen($_POST['text']) < 10) {
-                $this->redirect('home','characters', ['error' => 'Text is too short!']);
-                return;
-            }
-
-            $character = new Character();
-            move_uploaded_file($_FILES['img1']['tmp_name'],Configuration::UPLOAD_DIR . "$img1_name");
-            $character->image1 = $img1_name;
-            move_uploaded_file($_FILES['img2']['tmp_name'],Configuration::UPLOAD_DIR . "$img2_name");
-            $character->image2 = $img2_name;
-            move_uploaded_file($_FILES['img3']['tmp_name'],Configuration::UPLOAD_DIR . "$img3_name");
-            $character->image3 = $img3_name;
-
-            $character->name = $_POST['name'];
-            $character->text = $_POST['text'];
-            $character->save();
         }
 
-        $this->redirect('home','characters', ['succes' => 'Character added succesfully!']);
+        $name = $this->request()->getValue('name');
+        if (strlen($name) < 3) {
+            return $this->json("error");
+        }
+        $text = $this->request()->getValue('text');
+        if (strlen($text) < 10) {
+            return $this->json("error");
+        }
+        $character = new Character();
+        move_uploaded_file($_FILES['img_1']['tmp_name'],Configuration::UPLOAD_DIR . "$img1_name");
+        $character->image1 = $img1_name;
+        move_uploaded_file($_FILES['img_2']['tmp_name'],Configuration::UPLOAD_DIR . "$img2_name");
+        $character->image2 = $img2_name;
+        move_uploaded_file($_FILES['img_3']['tmp_name'],Configuration::UPLOAD_DIR . "$img3_name");
+        $character->image3 = $img3_name;
+
+        $character->name = $name;
+        $character->text = $text;
+        $character->save();
+
+        $character = Character::getAll();
+        $size = sizeof($character);
+        return $this->json($character[$size - 1]);
     }
 
     public function deleteCharacter()
@@ -100,28 +99,26 @@ class HomeController extends AControllerRedirect
             return;
         }
 
-        if (isset($_POST['deleteCharacter'])) {
-            $image = Character::getOne($_POST["character_id"]);
-            unlink(Configuration::UPLOAD_DIR . "$image->image1");
-            unlink(Configuration::UPLOAD_DIR . "$image->image2");
-            unlink(Configuration::UPLOAD_DIR . "$image->image3");
-
-            Connection::connect()->prepare("DELETE FROM characters WHERE id=?")->execute([$_POST["character_id"]]);
-            $this->redirect('home','characters', ['succes' => 'Character deleted succesfully!']);
+        $char_id = $this->request()->getValue("char_id");
+        $character = Character::getAll('id = ?',[$char_id]);
+        if ($character == null) {
+            return $this->json("error");
+        } else {
+            $character = Character::getOne($char_id);
         }
-    }
+        unlink(Configuration::UPLOAD_DIR . "$character->image1");
+        unlink(Configuration::UPLOAD_DIR . "$character->image2");
+        unlink(Configuration::UPLOAD_DIR . "$character->image3");
 
-    public function getAllCharacters()
-    {
-        $chrctrs = Character::getAll();
-        return $this->json($chrctrs);
+        Connection::connect()->prepare("DELETE FROM characters WHERE id=?")->execute([$character->id]);
+        return $this->json("ok");
     }
 
     // Vsetko co sa tyka jutsu
     public function jutsu()
     {
         $jutsus = Jutsu::getAll();
-        return $this->html($jutsus);
+        return $this->html(array_reverse($jutsus));
     }
 
     public function addJutsu()
@@ -230,13 +227,6 @@ class HomeController extends AControllerRedirect
             $this->redirect('home','jutsu', ['succes' => 'Image changed succesfully!']);
         }
     }
-
-    public function getAllJutsus()
-    {
-        $jutsus = Jutsu::getAll();
-        return $this->json($jutsus);
-    }
-
     //Vsetko co sa tyka toolov
 
     public function tools()

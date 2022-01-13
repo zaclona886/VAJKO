@@ -1,5 +1,4 @@
-<?php /** @var Array $data */ ?>
-<script src="public/latest.js"></script>
+<?php /** @var Array $data [] */ ?>
 <div class="row mt-2 mb-2">
     <h3><i class="bi bi-filter-circle-fill"></i> Story <i class="bi bi-filter-circle-fill"></i></h3>
 </div>
@@ -15,38 +14,50 @@
         </p>
     </div>
     <div class="row d-flex justify-content-center">
-    </div>
-    <div class="row d-flex justify-content-center">
-        <div class="card m-3 p-3" style="width: 18rem;">
-            <h5 class="card-title"></h5>
-            <img class="card-img-top" src="
-            <?php foreach ($data[0] as $unit) {
-                \App\Config\Configuration::UPLOAD_DIR . $unit->image;
-            }?>" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title"></h5>
-                <a href="" class="btn btn-primary">
-                </a>
+        <?php foreach ($data[0] as $character) { ?>
+            <div class="card m-3 p-3" style="width: 18rem;">
+                <h5 class="card-title">Latest Character</h5>
+                <img class="card-img-top" src="<?= \App\Config\Configuration::UPLOAD_DIR . $character->image1 ?>"
+                     alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title"><?= $character->name ?> </h5>
+                    <a href="?c=home&a=characters" class="btn btn-primary">
+                        Go To Characters
+                    </a>
+                </div>
             </div>
-        </div>
-        <div class="card m-3 p-3" style="width: 18rem;">
-            <h5 class="card-title"></h5>
-            <img class="card-img-top" src="..." alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title"></h5>
-                <a href="" class="btn btn-primary">
-                </a>
+            <?php break;
+        }
+        foreach ($data[1] as $jutsu) {
+            ?>
+            <div class="card m-3 p-3" style="width: 18rem;">
+                <h5 class="card-title">Latest Jutsu</h5>
+                <img class="card-img-top" src="<?= \App\Config\Configuration::UPLOAD_DIR . $jutsu->image ?>"
+                     alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title"><?= $jutsu->name ?></h5>
+                    <a href="?c=home&a=jutsu" class="btn btn-primary">
+                        Go To Jutsus
+                    </a>
+                </div>
             </div>
-        </div>
-        <div class="card m-3 p-3" style="width: 18rem;">
-            <h5 class="card-title"></h5>
-            <img class="card-img-top" src="..." alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title"></h5>
-                <a href="" class="btn btn-primary">
-                </a>
+            <?php break;
+        }
+        foreach ($data[2] as $tool) {
+            ?>
+            <div class="card m-3 p-3" style="width: 18rem;">
+                <h5 class="card-title">Latest Tool</h5>
+                <img class="card-img-top" src="<?= \App\Config\Configuration::UPLOAD_DIR . $tool->image ?>"
+                     alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title"><?= $tool->name ?></h5>
+                    <a href="?c=home&a=tools" class="btn btn-primary">
+                        Go To Tools
+                    </a>
+                </div>
             </div>
-        </div>
+            <?php break;
+        } ?>
     </div>
 </div>
 

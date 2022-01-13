@@ -112,3 +112,7 @@ div[data-tooltip] {
     left: 0;
 }
 
+.trashButton {
+    z-index: 1000;
+}
+
