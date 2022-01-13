@@ -100,7 +100,7 @@
     <div class="row">
         <?php
         $x = 1;
-        foreach ($data as $jutsu) {?>
+        foreach ($data[0] as $jutsu) {?>
             <div class="col-12 col-md-6">
                 <div class="card p-2">
                     <?php if (App\Auth::isLogged()) { ?>
@@ -159,6 +159,10 @@
                                         <div class="col-8 d-flex justify-content-center">
                                             <input type="hidden" name="jutsu_id" value="<?= $jutsu->id ?>">
                                             <select id="inputUser<?php echo $x?>" class="form-select" name="name">
+                                                <option selected></option>
+                                                <?php foreach ($data[1] as $character) {?>
+                                                <option><?= $character->name ?></option>
+                                                <?php } ?>
                                             </select>
                                         </div>
                                         <div class="col-4 d-flex justify-content-start">

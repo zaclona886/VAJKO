@@ -117,8 +117,9 @@ class HomeController extends AControllerRedirect
     // Vsetko co sa tyka jutsu
     public function jutsu()
     {
-        $jutsus = Jutsu::getAll();
-        return $this->html(array_reverse($jutsus));
+        $data[0] = array_reverse(Jutsu::getAll());
+        $data[1] = Character::getAll();
+        return $this->html($data);
     }
 
     public function addJutsu()
