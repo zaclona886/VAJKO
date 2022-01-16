@@ -9,9 +9,9 @@ function deleteCharacter(char_id) {
         .then(resposne => {
             if (resposne == 'error') {
                 alert("Something went wrong!");
-            } else {
-                document.getElementById("cardChar" + char_id).remove();
+                return;
             }
+            document.getElementById("cardChar" + char_id).remove();
         });
 }
 

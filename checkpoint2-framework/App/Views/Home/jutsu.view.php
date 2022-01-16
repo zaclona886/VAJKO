@@ -115,8 +115,7 @@
                                     </button>
                                     <button type="submit" class="check-fill btn-outline-danger"
                                             name="deleteJutsu">
-                                        <i class="bi bi-trash-fill"></i>
-                                    </button>
+                                        <i class="bi bi-trash-fill"></i></button>
 
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                         <div class="card row">

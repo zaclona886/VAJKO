@@ -295,4 +295,70 @@ class HomeController extends AControllerRedirect
 
         return $this->json($tool);
     }
+
+    public function editTool(){
+
+        if (!Auth::isLogged()) {
+            $this->redirect('home', 'characters');
+            return;
+        }
+
+        $tools = Tool::getAll('id = ?',[$_POST['tool_id']]);
+        if ($tools == null) {
+            return $this->json('error');
+        }
+        $tool = Tool::getOne($_POST['tool_id']);
+
+        $name = $this->request()->getValue('name');
+        if (strlen($name) < 3) {
+            return $this->json("error");
+        }
+        $description = $this->request()->getValue('text');
+        if (strlen($description) < 10) {
+            return $this->json("error");
+        }
+        $wielders = $this->request()->getValue('wielders');
+        if (strlen($wielders) < 3) {
+            return $this->json("error");
+        }
+
+        if (isset($_FILES['img_T'])) {
+            if ($_FILES["img_T"]["error"] == UPLOAD_ERR_OK) {
+
+                $imgT_name = date('Y-m-d-H-i-s') . 'T' . $_FILES['img_T']['name'];
+                $imageFileType = strtolower(pathinfo($imgT_name, PATHINFO_EXTENSION));
+                if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
+                    return $this->json("error");
+                }
+                unlink(Configuration::UPLOAD_DIR . "$tool->image");
+                move_uploaded_file($_FILES['img_T']['tmp_name'], Configuration::UPLOAD_DIR . "$imgT_name");
+                $tool->image = $imgT_name;
+            }
+        }
+
+        $tool->name = $name;
+        $tool->wielders = $wielders;
+        $tool->description = $description;
+        $tool->save();
+
+        return $this->json($tool);
+    }
+
+    public function deleteTool(){
+        if (!Auth::isLogged()) {
+            $this->redirect('home', 'characters');
+            return;
+        }
+
+        $tool_id = $this->request()->getValue("tool_id");
+        $tools = Tool::getAll('id = ?', [$tool_id]);
+        if ($tools == null) {
+            return $this->json("error");
+        }
+        $tool = Tool::getOne($tool_id);
+        unlink(Configuration::UPLOAD_DIR . "$tool->image");
+
+        Connection::connect()->prepare("DELETE FROM tools WHERE id=?")->execute([$tool->id]);
+        return $this->json("ok");
+    }
 }

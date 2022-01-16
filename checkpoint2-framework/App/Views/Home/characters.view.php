@@ -52,7 +52,6 @@
     <div id="newCharAdd" class="row p-4 pt-0">
 
         <?php
-        $i = 1;
         foreach ($data as $character) { ?>
             <div id="cardChar<?= $character->id ?>" class="card mb-3">
                 <div class="row g-0 align-items-center">
@@ -112,7 +111,6 @@
                     </div>
                 </div>
             </div>
-            <?php $i++;
-        } ?>
+            <?php } ?>
     </div>
 </div>

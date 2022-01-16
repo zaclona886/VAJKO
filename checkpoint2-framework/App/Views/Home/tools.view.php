@@ -50,17 +50,47 @@
         </div>
     </div>
     <div class="row">
-        <div id="showTool" class="card" hidden >
+        <div id="showTool" class="card" hidden>
             <div class="row g-0 mb-2 mt-2">
+                <?php if (App\Auth::isLogged()) { ?>
+                    <div class="d-flex justify-content-end">
+                        <div class="trashButton position-relative position-absolute">
+                            <button onclick="showToolEdit()" class="check-fill btn-outline-success">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                        </div>
+                    </div>
+                <?php } ?>
                 <div class="col-md-9 card-body ">
                     <div>
                         <img id="tool_image"
-                         class="img-fluid rounded-start" alt="..." style="float: left">
+                             class="img-fluid rounded-start" alt="..." width="300" height="250" style="float: left">
                     </div>
                     <h5 id="tool_name" class="text-center">Tool name</h5>
                     <p id="tool_text" style="text-align: justify;"></p>
                 </div>
-                <div id="tool_wielders" class="col-md-3 text-center align-items-center card-body border border-dark bord border-2">
+                <div id="tool_wielders"
+                     class="col-md-3 text-center align-items-center card-body border border-dark bord border-2">
+                </div>
+                <div id="editTool" hidden>
+                    <?php if (App\Auth::isLogged()) { ?>
+                        <div>
+                            <label for="edit_img_T">Image</label>
+                            <input type="file" class="form-control" name="img" id="edit_img_T">
+                            <div>
+                                <label for="input_name">Tool's name</label><br>
+                                <input type="text" name="name" id="edit_name">
+                            </div>
+                            <div>
+                                <label for="edit_wielders">Tool's wielders</label><br>
+                                <input class="form-control" type="text" name="wielders" id="edit_wielders">
+                            </div>
+                            <label for="edit_text">Tool's description</label>
+                            <textarea type="text" class="form-control" name="text" id="edit_text"></textarea><br>
+                            <button onclick="editTool()" class="btn btn-primary">Edit Tool</button>
+                            <button onclick="deleteTool()" class="btn btn-primary">Delete Tool</button>
+                        </div>
+                    <?php } ?>
                 </div>
             </div>
         </div>
