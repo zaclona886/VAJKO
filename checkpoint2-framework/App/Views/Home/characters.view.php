@@ -7,32 +7,32 @@
         <strong>
             <a class="btn btn-primary d-flex justify-content-start position-absolute" data-bs-toggle="collapse"
                href="#multiCollapseAddCharacter"
-               role="button" aria-expanded="false" aria-controls="multiCollapseAddCharacter">Add character
+               role="button" aria-expanded="false" aria-controls="multiCollapseAddCharacter">Add Character
             </a>
-            <h3><i class="bi bi-file-person"></i> Characters <i class="bi bi-file-person"></i></h3>
+            <h3>Characters</h3>
         </strong>
     </div>
     <div class="row">
         <div class="collapse multi-collapse" id="multiCollapseAddCharacter">
             <?php if (App\Auth::isLogged()) { ?>
-                <div class="card card-body">
+                <div class="card card-body mb-2">
                     <div class="row">
                         <div>
-                            <label for="inputUrl">Image 1</label>
+                            <label for="img_1">Image 1</label>
                             <input type="file" class="form-control" name="img1" id="img_1">
-                            <label for="inputUrl">Image 2</label>
+                            <label for="img_2">Image 2</label>
                             <input type="file" class="form-control" name="img2" id="img_2">
-                            <label for="inputUrl">Image3</label>
+                            <label for="img_3">Image 3</label>
                             <input type="file" class="form-control" name="img3" id="img_3">
-                            <div class="col-4">
-                                <label for="inputName">Character's name</label><br>
+                            <div>
+                                <label for="input_name">Character's name</label><br>
                                 <input type="text" name="name" id="input_name">
                             </div>
-                                <label for="text">Text</label>
+                                <label for="input_text">Character's description</label>
                                 <textarea type="text" class="form-control" name="text" id="input_text"></textarea><br>
                             <div class="pl-5">
                                 <button onclick="addCharacter()" class="btn btn-primary">Add
-                                    character
+                                    Character
                                 </button>
                             </div>
                         </div>
@@ -42,7 +42,7 @@
                 <div class="row">
                     <div class="col-12 d-flex justify-content-center mt-2">
                         <div class="alert alert-danger">
-                            You need to be login to add character.
+                            You need to be login to add Character.
                         </div>
                     </div>
                 </div>
@@ -54,7 +54,7 @@
         <?php
         $i = 1;
         foreach ($data as $character) { ?>
-            <div id="cardChar<?= $character->id ?>" class=" card mb-3">
+            <div id="cardChar<?= $character->id ?>" class="card mb-3">
                 <div class="row g-0 align-items-center">
                     <?php if (App\Auth::isLogged()) { ?>
                         <div class="d-flex justify-content-end">

@@ -7,9 +7,9 @@
         <strong>
             <a class="btn btn-primary d-flex justify-content-start position-absolute" data-bs-toggle="collapse"
                href="#multiCollapseExample1"
-               role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Add jutsu
+               role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Add Jutsu
             </a>
-            <h3><i class="bi bi-binoculars-fill"></i> Jutsus <i class="bi bi-binoculars-fill"></i></h3>
+            <h3>Jutsus</h3>
         </strong>
     </div>
     <div class="row">
@@ -28,7 +28,7 @@
                                        minlength="3" required>
                             </div>
                             <div class="form-group">
-                                <label for="inputDesc">Description</label>
+                                <label for="inputDesc">Jutsu's Description</label>
                                 <textarea type="text" class="form-control" name="text" id="inputDesc"
                                           minlength="10" required>
                                 </textarea>
@@ -60,7 +60,7 @@
                             </div>
                             <div class="p-2">
                                 <button type="submit" class="btn btn-primary" name="addJutsu">Add
-                                    jutsu
+                                    Jutsu
                                 </button>
                             </div>
                         </form>
@@ -70,7 +70,7 @@
                 <div class="row">
                     <div class="col-12 d-flex justify-content-center mt-2">
                         <div class="alert alert-danger">
-                            You need to be login to add jutsu.
+                            You need to be login to add Jutsu.
                         </div>
                     </div>
                 </div>
@@ -101,7 +101,7 @@
         <?php
         $x = 1;
         foreach ($data[0] as $jutsu) {?>
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-md-6 pt-2">
                 <div class="card p-2">
                     <?php if (App\Auth::isLogged()) { ?>
                         <div class=" d-flex justify-content-end">
@@ -129,7 +129,7 @@
                                                 <div class="p-2">
                                                     <button type="submit" class="btn btn-primary"
                                                             name="rewriteImg">
-                                                        Change image
+                                                        Change Image
                                                     </button>
                                                 </div>
                                             </div>
@@ -159,7 +159,6 @@
                                         <div class="col-8 d-flex justify-content-center">
                                             <input type="hidden" name="jutsu_id" value="<?= $jutsu->id ?>">
                                             <select id="inputUser<?php echo $x?>" class="form-select" name="name">
-                                                <option selected></option>
                                                 <?php foreach ($data[1] as $character) {?>
                                                 <option><?= $character->name ?></option>
                                                 <?php } ?>
@@ -181,7 +180,7 @@
                                     if ($i != count($jutsu->users())) {
                                         echo ", ";
                                     } else {
-                                        echo ",...";
+                                        echo "";
                                     }
                                     $i++;
                                 } ?>

@@ -8,7 +8,7 @@ function deleteCharacter(char_id) {
     }).then(resposne => resposne.json())
         .then(resposne => {
             if (resposne == 'error') {
-                alert("Character does not exist!");
+                alert("Something went wrong!");
             } else {
                 document.getElementById("cardChar" + char_id).remove();
             }

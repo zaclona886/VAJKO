@@ -2,14 +2,14 @@
 
 namespace App;
 
+use App\Models\Account;
+
 class Auth
 {
-    const LOGIN = "admin";
-    const PASSWORD = "abcd";
-
     public static function login($login,$password)
     {
-        if ($login == self::LOGIN && $password == self::PASSWORD) {
+        $accounts = Account::getAll('name = ?',[$login]);
+        if ($accounts[0] && password_verify($password,$accounts[0]->password)) {
             $_SESSION["name"] = $login;
             return true;
         } else {
@@ -18,8 +18,7 @@ class Auth
     }
 
     public static function logout()
-    {
-        unset($_SESSION['name']);
+    {unset($_SESSION['name']);
        session_destroy();
     }
 

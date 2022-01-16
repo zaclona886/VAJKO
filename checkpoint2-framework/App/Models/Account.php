@@ -4,21 +4,20 @@ namespace App\Models;
 
 use App\Core\Model;
 
-class Tool extends Model
+class Account extends Model
 {
     public $id;
-    public $image;
     public $name;
-    public $description;
-    public $wielders;
+    public $password;
+    public $date;
 
     static public function setDbColumns()
     {
-        return ['id','image','name','description','wielders'];
+        return ['id','name','password','date'];
     }
 
     static public function setTableName()
     {
-        return "tools";
+        return "accounts";
     }
 }
