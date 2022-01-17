@@ -148,17 +148,30 @@ class HomeController extends AControllerRedirect
                 $this->redirect('home', 'jutsu', ['error' => 'Name is too short!']);
                 return;
             }
+            if (strlen($_POST['name']) > 255) {
+                $this->redirect('home', 'jutsu', ['error' => 'Name is too longt!']);
+                return;
+            }
+
             if (strlen($_POST['text']) < 10) {
                 $this->redirect('home', 'jutsu', ['error' => 'Text is too short!']);
                 return;
             }
-            if ($_POST['type'] == " ") {
-                $this->redirect('home', 'jutsu', ['error' => 'Fill an type!']);
+            if (strlen($_POST['type']) <= 0) {
+                $this->redirect('home', 'jutsu', ['error' => 'Fill type!']);
+                return;
+            }
+            if (strlen($_POST['type']) > 255) {
+                $this->redirect('home', 'jutsu', ['error' => 'Type is to long!']);
                 return;
             }
 
-            if ($_POST['element'] == " ") {
-                $this->redirect('home', 'jutsu', ['error' => 'Fill an element!']);
+            if (strlen($_POST['element']) <=  0) {
+                $this->redirect('home', 'jutsu', ['error' => 'Fill element!']);
+                return;
+            }
+            if (strlen($_POST['element']) > 255) {
+                $this->redirect('home', 'jutsu', ['error' => 'Fill element!']);
                 return;
             }
 
@@ -190,15 +203,15 @@ class HomeController extends AControllerRedirect
             }
             $characters = Character::getAll('name = ?', [$_POST['name']]);
             if ($characters == null) {
-                $this->redirect('home', 'jutsu', ['error' => 'User name too short!']);
+                $this->redirect('home', 'jutsu', ['error' => 'User needs to exists in Characters!']);
                 return;
             }
             $newUser = new User();
             $newUser->jutsu_id = ($_POST['jutsu_id']);
             $newUser->name = ($_POST['name']);
             $newUser->save();
+            $this->redirect('home', 'jutsu', ['succes' => 'User added succesfully!']);
         }
-        $this->redirect('home', 'jutsu', ['succes' => 'User added succesfully!']);
     }
 
     public function iconAction() //Jutsu ikony

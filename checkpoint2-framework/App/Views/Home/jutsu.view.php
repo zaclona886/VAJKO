@@ -158,6 +158,7 @@
                                         <div class="col-8 d-flex justify-content-center">
                                             <input type="hidden" name="jutsu_id" value="<?= $jutsu->id ?>">
                                             <select id="inputUser<?php echo $x?>" class="form-select" name="name">
+                                                <option selected></option>
                                                 <?php foreach ($data[1] as $character) {?>
                                                 <option><?= $character->name ?></option>
                                                 <?php } ?>

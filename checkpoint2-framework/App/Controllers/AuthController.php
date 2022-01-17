@@ -35,6 +35,11 @@ class AuthController extends AControllerRedirect
                 $this->redirect('auth', 'loginForm', ['error' => 'Username is too short!']);
                 return;
             }
+            if (strlen($_POST['new_username']) > 255) {
+                $this->redirect('auth', 'loginForm', ['error' => 'Username is too long!']);
+                return;
+            }
+
             $accounts = Account::getAll('name = ?', [$_POST['new_username']]);
             if ($accounts != null) {
                 $this->redirect('auth', 'loginForm', ['error' => 'Username is already in use!']);
@@ -48,6 +53,10 @@ class AuthController extends AControllerRedirect
         if (isset($_POST['new_password1']) && isset($_POST['new_password2'])) {
             if (strlen($_POST['new_password1']) < 4) {
                 $this->redirect('auth', 'loginForm', ['error' => 'Password is too short!']);
+                return;
+            }
+            if (strlen($_POST['new_password1']) > 255) {
+                $this->redirect('auth', 'loginForm', ['error' => 'Password is too long!']);
                 return;
             }
             if (strcmp($_POST['new_password1'],$_POST['new_password2'])) {
