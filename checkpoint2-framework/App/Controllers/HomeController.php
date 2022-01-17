@@ -74,7 +74,7 @@ class HomeController extends AControllerRedirect
         }
 
         $name = $this->request()->getValue('name');
-        if (strlen($name) < 3) {
+        if (strlen($name) < 3 || strlen($name) > 255) {
             return $this->json("error");
         }
         $text = $this->request()->getValue('text');
@@ -149,7 +149,7 @@ class HomeController extends AControllerRedirect
                 return;
             }
             if (strlen($_POST['name']) > 255) {
-                $this->redirect('home', 'jutsu', ['error' => 'Name is too longt!']);
+                $this->redirect('home', 'jutsu', ['error' => 'Name is too long!']);
                 return;
             }
 
@@ -171,7 +171,7 @@ class HomeController extends AControllerRedirect
                 return;
             }
             if (strlen($_POST['element']) > 255) {
-                $this->redirect('home', 'jutsu', ['error' => 'Fill element!']);
+                $this->redirect('home', 'jutsu', ['error' => 'Element is too long!']);
                 return;
             }
 
@@ -214,7 +214,7 @@ class HomeController extends AControllerRedirect
         }
     }
 
-    public function iconAction() //Jutsu ikony
+    public function iconAction() //Jutsu ikony delete,update
     {
         if (!Auth::isLogged()) {
             $this->redirect('home', 'jutsu');
@@ -272,7 +272,7 @@ class HomeController extends AControllerRedirect
         }
 
         $name = $this->request()->getValue('name');
-        if (strlen($name) < 3) {
+        if (strlen($name) < 3 || strlen($name) > 255) {
             return $this->json("error");
         }
         $description = $this->request()->getValue('text');
@@ -280,7 +280,7 @@ class HomeController extends AControllerRedirect
             return $this->json("error");
         }
         $wielders = $this->request()->getValue('wielders');
-        if (strlen($wielders) < 3) {
+        if (strlen($wielders) < 3 || strlen($wielders) > 255) {
             return $this->json("error");
         }
 
@@ -323,7 +323,7 @@ class HomeController extends AControllerRedirect
         $tool = Tool::getOne($_POST['tool_id']);
 
         $name = $this->request()->getValue('name');
-        if (strlen($name) < 3) {
+        if (strlen($name) < 3 || strlen($name) > 255) {
             return $this->json("error");
         }
         $description = $this->request()->getValue('text');
@@ -331,7 +331,7 @@ class HomeController extends AControllerRedirect
             return $this->json("error");
         }
         $wielders = $this->request()->getValue('wielders');
-        if (strlen($wielders) < 3) {
+        if (strlen($wielders) < 3 || strlen($wielders) > 255) {
             return $this->json("error");
         }
 

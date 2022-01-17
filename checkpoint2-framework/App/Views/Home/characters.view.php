@@ -4,13 +4,13 @@
 <script src="public/scriptCharacters.js"></script>
 <div class="row d-flex justify-content-center">
     <div class="row mt-2 mb-2">
-        <strong>
-            <a class="btn btn-primary d-flex justify-content-start position-absolute" data-bs-toggle="collapse"
-               href="#multiCollapseAddCharacter"
-               role="button" aria-expanded="false" aria-controls="multiCollapseAddCharacter">Add Character
-            </a>
+            <div>
+                <a class="btn btn-primary d-flex justify-content-start position-absolute" data-bs-toggle="collapse"
+                   href="#multiCollapseAddCharacter"
+                   role="button" aria-expanded="false" aria-controls="multiCollapseAddCharacter">Add Character
+                </a>
+            </div>
             <h3>Characters</h3>
-        </strong>
     </div>
     <div class="row">
         <div class="collapse multi-collapse" id="multiCollapseAddCharacter">
@@ -29,7 +29,7 @@
                                 <input type="text" name="name" id="input_name">
                             </div>
                                 <label for="input_text">Character's description</label>
-                                <textarea type="text" class="form-control" name="text" id="input_text"></textarea><br>
+                                <textarea class="form-control" name="text" id="input_text"></textarea><br>
                             <div class="pl-5">
                                 <button onclick="addCharacter()" class="btn btn-primary">Add
                                     Character

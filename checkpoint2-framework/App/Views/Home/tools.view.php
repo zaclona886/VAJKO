@@ -4,13 +4,13 @@
 <script src="public/scriptTools.js"></script>
 <div class="row d-flex justify-content-center">
     <div class="row mt-2 mb-2">
-        <strong>
+        <div>
             <a class="btn btn-primary d-flex justify-content-start position-absolute" data-bs-toggle="collapse"
                href="#multiCollapseAddTool"
                role="button" aria-expanded="false" aria-controls="multiCollapseAddTool">Add Tool
             </a>
+        </div>
             <h3>Tools</h3>
-        </strong>
     </div>
     <div class="row">
         <div class="collapse multi-collapse" id="multiCollapseAddTool">
@@ -29,7 +29,7 @@
                                 <input class="form-control" type="text" name="wielders" id="input_wielders">
                             </div>
                             <label for="input_text">Tool's description</label>
-                            <textarea type="text" class="form-control" name="text" id="input_text"></textarea><br>
+                            <textarea class="form-control" name="text" id="input_text"></textarea><br>
                             <div class="pl-5">
                                 <button onclick="addTool()" class="btn btn-primary">Add
                                     Tool
@@ -63,7 +63,7 @@
                 <?php } ?>
                 <div class="col-md-9 card-body ">
                     <div>
-                        <img id="tool_image"
+                        <img id="tool_image" src="..."
                              class="img-fluid rounded-start" alt="..." width="300" height="200" style="float: left">
                     </div>
                     <h5 id="tool_name" class="text-center">Tool name</h5>
@@ -86,7 +86,7 @@
                                 <input class="form-control" type="text" name="wielders" id="edit_wielders">
                             </div>
                             <label for="edit_text">Tool's description</label>
-                            <textarea type="text" class="form-control" name="text" id="edit_text"></textarea><br>
+                            <textarea class="form-control" name="text" id="edit_text"></textarea><br>
                             <button onclick="editTool()" class="btn btn-primary">Edit Tool</button>
                             <button onclick="deleteTool()" class="btn btn-primary">Delete Tool</button>
                         </div>

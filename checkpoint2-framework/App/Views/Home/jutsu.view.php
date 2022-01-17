@@ -4,13 +4,13 @@
 <script src="public/jutsu.js"></script>
 <div class="row d-flex justify-content-center">
     <div class="row mt-2 mb-2">
-        <strong>
+        <div>
             <a class="btn btn-primary d-flex justify-content-start position-absolute" data-bs-toggle="collapse"
                href="#multiCollapseExample1"
                role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Add Jutsu
             </a>
+        </div>
             <h3>Jutsus</h3>
-        </strong>
     </div>
     <div class="row">
         <div class="collapse multi-collapse" id="multiCollapseExample1">
@@ -29,7 +29,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="inputDesc">Jutsu's Description</label>
-                                <textarea type="text" class="form-control" name="text" id="inputDesc"
+                                <textarea class="form-control" name="text" id="inputDesc"
                                           minlength="10" required>
                                 </textarea>
                                     <br>
@@ -108,7 +108,7 @@
                             <div class="position-absolute">
                                 <form method="post" enctype="multipart/form-data" action="?c=home&a=iconAction">
                                     <input type="hidden" name="jutsu_id" value="<?= $jutsu->id ?>">
-                                    <button class="check-fill btn-outline-success" id="dropdownMenuButton1"
+                                    <button class="check-fill btn-outline-success" id="dropdownMenuButton<?= $jutsu->id ?>"
                                             data-bs-toggle="dropdown"
                                             aria-expanded="false">
                                         <i class="bi bi-pencil-square"></i>
@@ -117,13 +117,13 @@
                                             name="deleteJutsu">
                                         <i class="bi bi-trash-fill"></i></button>
 
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton<?= $jutsu->id ?>">
                                         <div class="card row">
                                             <div class="col-12">
                                                 <div class="form-group">
-                                                    <label for="inputUrl">Change image</label>
+                                                    <label for="new_inputUrl<?= $jutsu->id ?>">Change image</label>
                                                     <input type="file" class="form-control" name="newImg"
-                                                           id="inputUrl">
+                                                           id="new_inputUrl<?= $jutsu->id ?>">
                                                 </div>
                                                 <div class="p-2">
                                                     <button type="submit" class="btn btn-primary"
@@ -133,7 +133,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </ul>
+                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -158,7 +158,7 @@
                                         <div class="col-8 d-flex justify-content-center">
                                             <input type="hidden" name="jutsu_id" value="<?= $jutsu->id ?>">
                                             <select id="inputUser<?php echo $x?>" class="form-select" name="name">
-                                                <option selected></option>
+                                                <option selected>Choose Character</option>
                                                 <?php foreach ($data[1] as $character) {?>
                                                 <option><?= $character->name ?></option>
                                                 <?php } ?>
