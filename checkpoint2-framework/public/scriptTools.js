@@ -60,9 +60,6 @@ function addTool() {
 
 function showTool(tool_id){
     if (document.getElementById("showTool").hidden == true || showed_tool_id != tool_id) {
-        document.getElementById("showTool").hidden = false;
-        document.getElementById("editTool").hidden = true;
-        showed_tool_id = tool_id;
         fetch("?a=getTool", {
             method: 'POST',
             headers: {
@@ -75,7 +72,9 @@ function showTool(tool_id){
                     alert("Something went wrong!");
                     return;
                 }
-
+                document.getElementById("showTool").hidden = false;
+                document.getElementById("editTool").hidden = true;
+                showed_tool_id = tool_id;
                 document.getElementById("tool_image").src = "public/images/"+data.image;
                 document.getElementById("tool_name").innerHTML = data.name;
                 document.getElementById("tool_text").innerHTML =data.description;
@@ -94,7 +93,6 @@ function showTool(tool_id){
 
 function showToolEdit() {
     if (document.getElementById("editTool").hidden == true) {
-        document.getElementById("editTool").hidden = false;
         fetch("?a=getTool", {
             method: 'POST',
             headers: {
@@ -107,7 +105,7 @@ function showToolEdit() {
                     alert("Something went wrong!");
                     return;
                 }
-
+                document.getElementById("editTool").hidden = false;
                 document.getElementById("edit_img_T").value = "";
                 document.getElementById("edit_name").value = data.name;
                 document.getElementById("edit_text").value = data.description;
