@@ -41,7 +41,7 @@ function addTool() {
                 return;
             }
             let html = `<div onclick="showTool(`+data.id+`)" id="cardTool`+data.id+`" class="m-2 p-0" style="width: 14rem;">
-                <img class="card-img-top" src="public/images/`+data.image+`"
+                <img class="card-img-top" width="224" height="126" src="public/images/`+data.image+`"
                      alt="Card image cap">
                     <div class="card-body text-center p-0">
                         <h5 class="card-title">`+data.name+`</h5>
@@ -119,7 +119,6 @@ function showToolEdit() {
 }
 
 function editTool() {
-    // KONTROLY
     formData = new FormData();
     let fileField = document.querySelector('#edit_img_T');
     if (fileField.value != "") {
@@ -164,7 +163,7 @@ function editTool() {
             document.getElementById("tool_name").innerHTML = data.name;
             document.getElementById("tool_text").innerHTML =data.description;
             document.getElementById("cardTool"+showed_tool_id).innerHTML =
-                `<img class="card-img-top" src="public/images/`+data.image+`"
+                `<img class="card-img-top" width="224" height="126" src="public/images/`+data.image+`"
                          alt="Card image cap">
                     <div class="card-body text-center p-0">
                         <p>`+data.name+`</p>

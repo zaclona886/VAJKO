@@ -64,7 +64,7 @@
                 <div class="col-md-9 card-body ">
                     <div>
                         <img id="tool_image"
-                             class="img-fluid rounded-start" alt="..." width="300" height="250" style="float: left">
+                             class="img-fluid rounded-start" alt="..." width="300" height="200" style="float: left">
                     </div>
                     <h5 id="tool_name" class="text-center">Tool name</h5>
                     <p id="tool_text" style="text-align: justify;"></p>
@@ -98,7 +98,7 @@
             <?php foreach ($data as $tool) { ?>
                 <div onclick="showTool(<?= $tool->id ?>)" id="cardTool<?= $tool->id ?>" class="m-2 p-0"
                      style="width: 14rem;">
-                    <img class="card-img-top" src="<?= \App\Config\Configuration::UPLOAD_DIR . $tool->image ?>"
+                    <img class="card-img-top" width="224" height="126" src="<?= \App\Config\Configuration::UPLOAD_DIR . $tool->image ?>"
                          alt="Card image cap">
                     <div class="card-body text-center p-0">
                         <p><?= $tool->name ?> </p>
